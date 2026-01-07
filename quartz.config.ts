@@ -8,14 +8,14 @@ import * as Plugin from "./quartz/plugins"
  */
 const config: QuartzConfig = {
   configuration: {
-    pageTitle: "Quartz 4",
+    pageTitle: "일상 기록",
     pageTitleSuffix: "",
     enableSPA: true,
     enablePopovers: true,
     analytics: {
       provider: "plausible",
     },
-    locale: "en-US",
+    locale: "ko-KR",
     baseUrl: "quartz.jzhao.xyz",
     ignorePatterns: ["private", "templates", ".obsidian"],
     defaultDateType: "modified",
@@ -29,26 +29,26 @@ const config: QuartzConfig = {
       },
       colors: {
         lightMode: {
-          light: "#faf8f8",
-          lightgray: "#e5e5e5",
-          gray: "#b8b8b8",
-          darkgray: "#4e4e4e",
-          dark: "#2b2b2b",
-          secondary: "#284b63",
-          tertiary: "#84a59d",
-          highlight: "rgba(143, 159, 169, 0.15)",
-          textHighlight: "#fff23688",
+          light: "#faf8ff",           // 연한 보라빛 배경
+          lightgray: "#e8e5f0",       // 연한 회보라
+          gray: "#b8b0d0",            // 중간 회보라
+          darkgray: "#5a4e7a",        // 진한 회보라
+          dark: "#2d2640",            // 매우 진한 보라
+          secondary: "#7c3aed",       // Obsidian 보라 (메인 액센트)
+          tertiary: "#a78bfa",        // 밝은 보라 (서브 액센트)
+          highlight: "rgba(124, 58, 237, 0.15)",  // 하이라이트
+          textHighlight: "#c4b5fd88", // 텍스트 하이라이트
         },
         darkMode: {
-          light: "#161618",
-          lightgray: "#393639",
-          gray: "#646464",
-          darkgray: "#d4d4d4",
-          dark: "#ebebec",
-          secondary: "#7b97aa",
-          tertiary: "#84a59d",
-          highlight: "rgba(143, 159, 169, 0.15)",
-          textHighlight: "#b3aa0288",
+          light: "#1e1b29",           // 어두운 보라 배경
+          lightgray: "#2d2640",       // 약간 밝은 어두운 보라
+          gray: "#665c8a",            // 중간 보라
+          darkgray: "#c4b5fd",        // 밝은 보라 (텍스트)
+          dark: "#e9e3ff",            // 거의 흰색 (헤더 텍스트)
+          secondary: "#a78bfa",       // Obsidian 보라 (메인)
+          tertiary: "#7c3aed",        // 진한 보라 (서브)
+          highlight: "rgba(167, 139, 250, 0.15)",
+          textHighlight: "#a78bfa88",
         },
       },
     },

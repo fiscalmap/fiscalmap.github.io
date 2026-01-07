@@ -2,8 +2,7 @@
 tags:
   - Powderham
   - castle
-startDate:
-endDate:
+date:
 draft:
 ---
 작성중

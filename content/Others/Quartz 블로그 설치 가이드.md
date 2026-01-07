@@ -252,18 +252,17 @@ npx quartz build --serve
 ### ⚠️ 중요 주의사항
 
 1. **저장소는 반드시 Public으로 설정**
-    
     - GitHub 무료 계정은 Public 저장소만 GitHub Pages 지원
+    - 
 2. **deploy.yml 파일 필수**
-    
     - 이 파일이 없으면 GitHub Actions가 실행되지 않음
     - 웹사이트가 배포되지 않음 (404 에러)
+    
 3. **브랜치 이름은 v4**
-    
-    - Quartz 기본 브랜치가 v4
+       - Quartz 기본 브랜치가 v4
     - deploy.yml도 v4 브랜치에서 실행되도록 설정됨
-4. **첫 push 시 -u 옵션 사용**
     
+4. **첫 push 시 -u 옵션 사용**
     - `git push -u origin v4`로 upstream 설정
 
 ### 문제 해결

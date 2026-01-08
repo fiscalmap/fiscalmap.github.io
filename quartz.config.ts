@@ -16,7 +16,7 @@ const config: QuartzConfig = {
       provider: "plausible",
     },
     locale: "ko-KR",
-    baseUrl: "quartz.jzhao.xyz",
+    baseUrl: "letabli.github.io/",
     ignorePatterns: ["private", "templates", ".obsidian"],
     defaultDateType: "modified",
     theme: {
@@ -43,7 +43,7 @@ const config: QuartzConfig = {
           light: "#1e1b29",           // 어두운 보라 배경
           lightgray: "#2d2640",       // 약간 밝은 어두운 보라
           gray: "#665c8a",            // 중간 보라
-          darkgray: "#c4b5fd",        // 밝은 보라 (텍스트)
+          darkgray: "#d8d0f0",        // 밝은 보라 (텍스트)
           dark: "#e9e3ff",            // 거의 흰색 (헤더 텍스트)
           secondary: "#a78bfa",       // Obsidian 보라 (메인)
           tertiary: "#7c3aed",        // 진한 보라 (서브)

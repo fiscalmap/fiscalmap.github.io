@@ -40,7 +40,7 @@ const config: QuartzConfig = {
           textHighlight: "#c4b5fd88", // 텍스트 하이라이트
         },
         darkMode: {
-          light: "#1e1b29",           // 어두운 보라 배경
+          light: "#110517",           // 어두운 보라 배경
           lightgray: "#2d2640",       // 약간 밝은 어두운 보라
           gray: "#665c8a",            // 중간 보라
           darkgray: "#d8d0f0",        // 밝은 보라 (텍스트)

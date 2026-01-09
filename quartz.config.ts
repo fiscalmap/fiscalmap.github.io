@@ -29,11 +29,11 @@ const config: QuartzConfig = {
       },
       colors: {
         lightMode: {
-          light: "#faf8ff",           // 연한 보라빛 배경
+          light: "#F7F5FA",           // 연한 보라빛 배경
           lightgray: "#e8e5f0",       // 연한 회보라
           gray: "#b8b0d0",            // 중간 회보라
-          darkgray: "#5a4e7a",        // 진한 회보라
-          dark: "#2d2640",            // 매우 진한 보라
+          darkgray: "#1A0236",        // 진한 회보라
+          dark: "#0A0017",            // 매우 진한 보라
           secondary: "#7c3aed",       // Obsidian 보라 (메인 액센트)
           tertiary: "#a78bfa",        // 밝은 보라 (서브 액센트)
           highlight: "rgba(124, 58, 237, 0.15)",  // 하이라이트

@@ -1,7 +1,7 @@
 ---
 tags:
   - index
-title: Government Finance Statistics Manual 2014 Index
+title: GFSM 2014
 date: 2026-01-12
 draft: false
 ---

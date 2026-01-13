@@ -3,7 +3,7 @@ tags:
   - index
 title: Main Page
 date: 2026-01-12
-draft: true
+draft: false
 ---
 ## 저장소 개요
 이 저장소는 IMF가 설계한 **정부 재정 통계**(Government Finance Statistics, GFS)에 대한 정보와 관련 통계 자료를 수집하기 위해 제작되었다.

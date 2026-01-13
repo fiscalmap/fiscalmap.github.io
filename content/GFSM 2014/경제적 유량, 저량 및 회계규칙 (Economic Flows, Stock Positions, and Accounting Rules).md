@@ -3,7 +3,7 @@ tags:
   - guide
 title: 경제적 유량, 저량 및 회계규칙 (Economic Flows, Stock Positions, and Accounting Rules)
 date: 2026-01-12
-draft: true
+draft: false
 ---
 ## 서론 (Introduction)
 

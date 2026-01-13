@@ -3,7 +3,7 @@ tags:
   - guide
 title: GFS 자료 출처 및 링크
 date: 2026-01-13
-draft: true
+draft: false
 ---
 #### GFS Manuals and Guides (IMF)
 IMF(International Monetary Fund)는 일반정부 재정 통계의 작성 지침([[Government Finance Statistics Manual 2014 상세 목차|GFSM]])을 수립한 국제기구이다. 당연히 [[Index|GFS]]에 대한 각종 매뉴얼과 가이드를 제공하고 있다 ([링크](https://www.imf.org/external/pubs/ft/gfs/manual/aboutgfs.htm)). GFSM 1986, 2001, 2014 버전과 [The Public Sector Debt Statistics (PSDS)](http://www.tffs.org/PSDStoc.htm) 등에 대한 자료들이 제공된다.

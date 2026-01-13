@@ -3,7 +3,7 @@ tags:
   - guide
 title: GFSM 1986과의 방법론적 차이 (Methodological Differences with GFSM 1986)
 date: 2026-01-12
-draft: true
+draft: false
 ---
 ### 1. 포괄 범위 (Coverage)
 - (2014) [[제도단위와 부문 (Institutional Units and Sectors)#제도단위의 정의 (Definition of an Institutional Unit)|제도단위 (institutional units)]]를 기준으로 정의된 [[제도단위와 부문 (Institutional Units and Sectors)#3. 일반정부 부문 (General Government Sector)|일반정부 부문 (the general government sector)]]

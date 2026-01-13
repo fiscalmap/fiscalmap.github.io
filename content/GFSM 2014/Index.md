@@ -2,8 +2,8 @@
 tags:
   - index
 title: Government Finance Statistics Manual 2014 Index
-date:
-draft: true
+date: 2026-01-12
+draft: false
 ---
 ## 현황
 GFSM 2014는 각 국가 정부의 재정정책 수립, 분석 및 평가를 지원하기 위해 IMF가 설계한 종합적인 회계 처리 및 분석 툴이다. 2014버전은 1986과 2001을 업데이트한 세번째 최신 버전이다.

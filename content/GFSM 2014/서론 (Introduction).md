@@ -3,7 +3,7 @@ tags:
   - guide
 title: 서론 (Introduction)
 date: 2026-01-12
-draft: true
+draft: false
 ---
 ## 편람의 목적과 활용
 

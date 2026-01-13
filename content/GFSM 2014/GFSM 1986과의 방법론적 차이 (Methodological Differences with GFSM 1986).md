@@ -8,7 +8,7 @@ draft: false
 ### 1. 포괄 범위 (Coverage)
 - (2014) [[제도단위와 부문 (Institutional Units and Sectors)#제도단위의 정의 (Definition of an Institutional Unit)|제도단위 (institutional units)]]를 기준으로 정의된 [[제도단위와 부문 (Institutional Units and Sectors)#3. 일반정부 부문 (General Government Sector)|일반정부 부문 (the general government sector)]]
 - (1986) 기능을 기준으로(functional basis) 모든 기관의 정부 기능 관련 거래
-	- 공기업의 정부 기능 관련 거래도 일반정부 데이터에 포함 
+	- 공기업의 정부 기능 관련 거래도 일반정부 데이터에 포함
 - 제2장 [[제도단위와 부문 (Institutional Units and Sectors)]]에서 자세히 설명된다.
 ### 2. 경제적 사건의 기록 기준 (Basis of Recording Economic Events)
 - (2014) 발생주의 기준으로 유량 기록, 비화폐적 거래가 포함됨

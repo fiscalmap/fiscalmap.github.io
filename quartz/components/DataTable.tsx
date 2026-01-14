@@ -9,7 +9,6 @@ interface DataTableOptions {
   sortable?: boolean
   searchable?: boolean
   exportable?: boolean
-  pageSize?: number
 }
 
 export default ((userOpts?: DataTableOptions) => {
@@ -21,27 +20,26 @@ export default ((userOpts?: DataTableOptions) => {
       sortable: userOpts?.sortable ?? true,
       searchable: userOpts?.searchable ?? true,
       exportable: userOpts?.exportable ?? true,
-      pageSize: userOpts?.pageSize ?? 50,
       src: userOpts?.src ?? "/static/data.csv"
     }
     
     const uniqueId = `datatable-${Math.random().toString(36).substr(2, 9)}`
     
     return (
-      <div class="datatable-container" id={uniqueId}>
+      <div className="datatable-container" id={uniqueId}>
         {options.searchable && (
-          <div class="datatable-controls">
-            <div class="datatable-search">
+          <div className="datatable-controls">
+            <div className="datatable-search">
               <input 
                 type="text" 
                 placeholder="검색..." 
-                class="search-input"
+                className="search-input"
                 id={`${uniqueId}-search`}
               />
             </div>
             {options.exportable && (
-              <div class="datatable-actions">
-                <button class="export-btn" id={`${uniqueId}-export`}>
+              <div className="datatable-actions">
+                <button className="export-btn" id={`${uniqueId}-export`}>
                   📥 CSV 내보내기
                 </button>
               </div>
@@ -49,8 +47,8 @@ export default ((userOpts?: DataTableOptions) => {
           </div>
         )}
         
-        <div class="datatable-wrapper">
-          <table class="datatable" id={`${uniqueId}-table`}>
+        <div className="datatable-wrapper">
+          <table className="datatable" id={`${uniqueId}-table`}>
             <thead id={`${uniqueId}-thead`}>
               {/* 헤더는 동적으로 생성됨 */}
             </thead>
@@ -60,8 +58,8 @@ export default ((userOpts?: DataTableOptions) => {
           </table>
         </div>
         
-        <div class="datatable-info" id={`${uniqueId}-info`}>
-          총 <span class="total-rows">0</span>개 항목
+        <div className="datatable-info" id={`${uniqueId}-info`}>
+          총 <span className="total-rows">0</span>개 항목
         </div>
         
         <script type="module" dangerouslySetInnerHTML={{
@@ -132,7 +130,7 @@ export default ((userOpts?: DataTableOptions) => {
               // 데이터 로드
               try {
                 const response = await fetch(options.src);
-                if (!response.ok) throw new Error('CSV 파일을 불러올 수 없습니다');
+                if (!response.ok) throw new Error('CSV 파일을 불러올 수 없습니다: ' + options.src);
                 
                 const csvText = await response.text();
                 const rows = parseCSV(csvText);
@@ -204,7 +202,7 @@ export default ((userOpts?: DataTableOptions) => {
                       
                       const cleanText = cell.trim();
                       
-                      // 접이식 버튼 추가 (collapsible이 true이고 레벨이 낮은 경우)
+                      // 접이식 버튼 추가
                       if (options.collapsible && level < 2) {
                         const toggle = document.createElement('span');
                         toggle.className = 'toggle';
@@ -250,7 +248,6 @@ export default ((userOpts?: DataTableOptions) => {
                     if (nextLevel === triggerLevel + 1) {
                       nextRow.style.display = isExpanded ? 'none' : 'table-row';
                       
-                      // 하위 항목의 토글도 닫기
                       if (isExpanded) {
                         const subToggle = nextRow.querySelector('.toggle');
                         if (subToggle) {
@@ -343,7 +340,7 @@ export default ((userOpts?: DataTableOptions) => {
               } catch (error) {
                 console.error('DataTable 오류:', error);
                 document.getElementById(\`\${uniqueId}-tbody\`).innerHTML = 
-                  \`<tr><td colspan="100" style="text-align: center; padding: 2rem; color: var(--gray);">
+                  \`<tr><td colspan="100" style="text-align: center; padding: 2rem; color: #666;">
                     ⚠️ 데이터를 불러올 수 없습니다: \${error.message}
                   </td></tr>\`;
               }

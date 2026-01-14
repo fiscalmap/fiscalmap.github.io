@@ -1,19 +1,36 @@
-// DataTable 초기화 스크립트 (다운로드 버튼 포함)
+// DataTable 초기화 스크립트 (다중 테이블 지원)
 (function() {
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initDataTable);
+    document.addEventListener('DOMContentLoaded', initAllDataTables);
   } else {
-    initDataTable();
+    initAllDataTables();
   }
   
-  async function initDataTable() {
-    const container = document.getElementById('datatable-root');
-    if (!container) {
-      console.log('DataTable: 컨테이너를 찾을 수 없습니다');
+  async function initAllDataTables() {
+    // datatable- 로 시작하는 모든 div 찾기
+    const containers = document.querySelectorAll('[id^="datatable-"]');
+    
+    if (containers.length === 0) {
+      console.log('DataTable: 테이블 컨테이너를 찾을 수 없습니다');
       return;
     }
     
-    const csvPath = container.dataset.src || '/static/statement_of_operations2022.csv';
+    console.log('DataTable: ' + containers.length + '개 테이블 발견');
+    
+    // 각 컨테이너에 대해 테이블 생성
+    for (let containerIdx = 0; containerIdx < containers.length; containerIdx++) {
+      await initDataTable(containers[containerIdx]);
+    }
+  }
+  
+  async function initDataTable(container) {
+    const csvPath = container.dataset.src;
+    
+    if (!csvPath) {
+      console.error('DataTable: data-src 속성이 없습니다', container.id);
+      return;
+    }
+    
     console.log('DataTable: CSV 로딩 시작 -', csvPath);
     
     // CSV 파싱
@@ -91,7 +108,7 @@
       }
       
       const csvText = await response.text();
-      console.log('DataTable: CSV 로딩 완료');
+      console.log('DataTable: CSV 로딩 완료 -', csvPath);
       
       const rows = parseCSV(csvText);
       console.log('DataTable: 파싱 완료 -', rows.length, '행');
@@ -100,17 +117,24 @@
         throw new Error('CSV 파일이 비어있습니다');
       }
       
-      // 첫 번째 컬럼(ACNT_YR) 제거
-      const headers = rows[0].slice(1);
-      const dataRows = rows.slice(1).map(row => row.slice(1));
+      // 첫 번째 컬럼이 ACNT_YR이면 제거, 아니면 유지
+      let headers = rows[0];
+      let dataRows = rows.slice(1);
+      
+      if (headers[0].trim().toUpperCase() === 'ACNT_YR') {
+        headers = headers.slice(1);
+        dataRows = dataRows.map(row => row.slice(1));
+      }
+      
+      // 파일명 추출
+      const fileName = csvPath.split('/').pop();
       
       // 다운로드 버튼
       let html = '<div style="margin-bottom: 1rem; display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: #f8f9fa; border-radius: 8px; border: 1px solid #ddd;">';
       html += '<div>';
-      html += '<h4 style="margin: 0 0 0.5rem 0; color: #1e40af;">📊 정부운영표 데이터</h4>';
       html += '<p style="margin: 0; font-size: 0.9rem; color: #666;">총 <strong>' + dataRows.length + '</strong>개 항목</p>';
       html += '</div>';
-      html += '<a href="' + csvPath + '" download style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: #3b82f6; color: white; text-decoration: none; border-radius: 6px; font-weight: 600; transition: background 0.2s;" onmouseover="this.style.background=\'#2563eb\'" onmouseout="this.style.background=\'#3b82f6\'">';
+      html += '<a href="' + csvPath + '" download="' + fileName + '" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: #3b82f6; color: white; text-decoration: none; border-radius: 6px; font-weight: 600; transition: background 0.2s;" onmouseover="this.style.background=\'#2563eb\'" onmouseout="this.style.background=\'#3b82f6\'">';
       html += '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>';
       html += 'CSV 다운로드';
       html += '</a>';
@@ -166,19 +190,11 @@
       
       html += '</tbody></table></div>';
       
-      // 하단 정보
-      html += '<div style="margin-top: 1rem; padding: 0.75rem; background: #f8f9fa; border-radius: 6px; font-size: 0.85rem; color: #666;">';
-      html += '<div style="display: flex; justify-content: space-between; align-items: center;">';
-      html += '<div>데이터 출처: 기획예산처</div>';
-      html += '<div>datatable loader 3.0 </div>';
-      html += '</div>';
-      html += '</div>';
-      
       container.innerHTML = html;
-      console.log('DataTable: 렌더링 완료');
+      console.log('DataTable: 렌더링 완료 -', csvPath);
       
     } catch (error) {
-      console.error('DataTable 오류:', error);
+      console.error('DataTable 오류:', csvPath, error);
       container.innerHTML = '<div style="padding:2rem;text-align:center;color:#666;border:1px solid #ddd;border-radius:8px;margin:2rem 0;">⚠️ 데이터를 불러올 수 없습니다: ' + error.message + '</div>';
     }
   }

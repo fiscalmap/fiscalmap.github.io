@@ -38,4 +38,4 @@ GFSM 2014는 아래 표와 같이 10개 장과 기타 부록으로 구성되어 
 | **부록 9** | 용어집                                                                                   |
 
 ## 편람 상세 목차
-[[Government Finance Statistics Manual 2014 상세 목차]]
+[[GFSM 2014 상세 목차]]

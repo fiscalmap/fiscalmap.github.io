@@ -20,7 +20,7 @@ GFSM 2014는 아래 표와 같이 10개 장과 기타 부록으로 구성되어 
 | **1장**   | [[서론 (Introduction)]]                                                                         |
 | **2장**   | [[제도단위와 부문 (Institutional Units and Sectors)]]                                                |
 | **3장**   | [[경제적 유량, 저량 및 회계규칙 (Economic Flows, Stock Positions, and Accounting Rules)]]                 |
-| **4장**   | [[정부재정통계 분석 체계 (The Government Finance Statistics Analytic Framework)]] + 부록([[GFS 재정분석 활용]]) |
+| **4장**   | [[정부재정통계 분석 체계 (The Government Finance Statistics Analytic Framework)]] + 부록([[GFS 재정지표 분석 및 활용]]) |
 | **5장**   | 수입 (Revenue)                                                                                  |
 | **6장**   | 비용 (Expense) + 부록(COFOG)                                                                      |
 | **7장**   | 대차대조표 (The Balance Sheet)                                                                     |

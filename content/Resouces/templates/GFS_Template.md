@@ -1,6 +1,6 @@
 ---
 tags:
 title:
-date:
+date: {{date: YYYY-MM-DD}}
 draft: true
 ---

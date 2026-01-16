@@ -1,0 +1,29 @@
+Code,Description,Category
+1,수익 (Revenue),순자산에 영향을 미치는 거래 (Transactions Affecting Net Worth)
+11,조세 (Taxes),
+12,사회기여금 (Social contributions) [GFS],
+13,무상이전수입 (Grants),
+14,기타수익 (Other revenue),
+2,비용 (Expense),순자산에 영향을 미치는 거래 (Transactions Affecting Net Worth)
+21,피용자보수 (Compensation of employees) [GFS],
+22,재화 및 용역 사용 (Use of goods and services),
+23,고정자본 소모 (Consumption of fixed capital) [GFS],
+24,이자 (Interest) [GFS],
+25,보조금 (Subsidies),
+26,무상이전지급 (Grants),
+27,사회급여 (Social benefits) [GFS],
+28,기타비용 (Other expense),
+NOB/GOB,순/총영업잉여 (Net/gross operating balance) (1-2),순자산에 영향을 미치는 거래 (Transactions Affecting Net Worth)
+31,비금융자산의 순/총투자 (Net/gross investment in nonfinancial assets),비금융자산 거래 (Transactions in Nonfinancial Assets)
+311,고정자산 (Fixed assets),
+312,재고자산 (Inventories),
+313,귀중품 (Valuables),
+314,비생산자산 (Nonproduced assets),
+2M,지출 (Expenditure) (2+31),비금융자산 거래 (Transactions in Nonfinancial Assets)
+NLB,순대출(+)/순차입(-) (Net lending (+) / Net borrowing (-)) [GFS] (1-2-31 = 1-2M = 32-33),비금융자산 거래 (Transactions in Nonfinancial Assets)
+32,금융자산의 순취득 (Net acquisition of financial assets),금융자산 및 부채 거래 (재원조달) (Transactions in Financial Assets and Liabilities (Financing))
+321,국내 (Domestic),
+322,해외 (External),
+33,부채의 순발생 (Net incurrence of liabilities),금융자산 및 부채 거래 (재원조달) (Transactions in Financial Assets and Liabilities (Financing))
+331,국내 (Domestic),
+332,해외 (External),

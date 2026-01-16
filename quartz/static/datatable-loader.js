@@ -1,4 +1,4 @@
-// DataTable 초기화 스크립트 (계층 구조 개선)
+// DataTable 초기화 스크립트 (왼쪽 정렬 수정)
 (function() {
   console.log('DataTable: 스크립트 로드됨');
 
@@ -54,13 +54,13 @@
       console.log('DataTable: 헤더 =', headers);
       console.log('DataTable: 첫 번째 데이터 행 =', dataRows[0]);
 
-      // 첫 번째 컬럼(Description)에서 계층 레벨 분석
+      // Description 컬럼에서 계층 레벨 분석
       console.log('\nDataTable: 계층 구조 분석:');
       dataRows.forEach((row, idx) => {
         const desc = row[1] || ''; // Description 컬럼
         const level = detectLevel(desc);
-        if (idx < 10) { // 처음 10개만 로그
-          console.log(`  행 ${idx}: "${desc}" -> 레벨 ${level}`);
+        if (idx < 10) {
+          console.log(`  행 ${idx}: "${desc}" (공백:${countSpaces(desc)}) -> 레벨 ${level}`);
         }
       });
 
@@ -96,8 +96,8 @@
             inQuotes = !inQuotes;
           }
         } else if (char === ',' && !inQuotes) {
-          row.push(current); // 공백 보존 (trim 하지 않음!)
-current = '';
+          row.push(current); // 공백 보존!
+          current = '';
         } else {
           current += char;
         }
@@ -109,18 +109,22 @@ current = '';
     return result;
   }
 
+  // 공백 개수 세기 (디버깅용)
+  function countSpaces(text) {
+    if (!text) return 0;
+    let count = 0;
+    for (let i = 0; i < text.length; i++) {
+      if (text[i] === ' ') count++;
+      else break;
+    }
+    return count;
+  }
+
   // 계층 레벨 감지 - Description 필드의 앞 공백 개수로 판단
   function detectLevel(text) {
     if (!text) return 0;
 
-    let spaces = 0;
-    for (let i = 0; i < text.length; i++) {
-      if (text[i] === ' ') {
-        spaces++;
-      } else {
-        break;
-      }
-    }
+    const spaces = countSpaces(text);
 
     // 2칸 = 레벨 1, 4칸 = 레벨 2, 6칸 = 레벨 3
     if (spaces >= 6) return 3;
@@ -159,16 +163,24 @@ current = '';
     // 헤더
     html += '<thead><tr style="background:#f3f4f6;border-bottom:2px solid #e5e7eb;">';
     headers.forEach((header, idx) => {
-      const align = idx === 0 ? 'left' : 'right';
-      html += `<th style="padding:12px 16px;text-align:${align};font-weight:600;color:#374151;font-size:0.875rem;">${header}</th>`;
+      if (idx === 0) {
+        // Code 컬럼
+        html += `<th style="padding:12px 16px;text-align:left !important;font-weight:600;color:#374151;font-size:0.875rem;">${header}</th>`;
+      } else if (idx === 1) {
+        // Description 컬럼 - 왼쪽 정렬 강제
+        html += `<th style="padding:12px 16px;text-align:left !important;font-weight:600;color:#374151;font-size:0.875rem;">${header}</th>`;
+      } else {
+        // Category 컬럼 - 오른쪽 정렬
+        html += `<th style="padding:12px 16px;text-align:right !important;font-weight:600;color:#374151;font-size:0.875rem;">${header}</th>`;
+      }
     });
     html += '</tr></thead>';
 
     // 본문
     html += '<tbody>';
     dataRows.forEach((row, rowIdx) => {
-      const firstCol = row[1] || ''; // Description
-      const level = detectLevel(firstCol);
+      const descCol = row[1] || ''; // Description
+      const level = detectLevel(descCol);
 
       // 레벨별 스타일
       const fontWeight = level === 0 ? '700' : level === 1 ? '600' : '400';
@@ -182,18 +194,24 @@ current = '';
 
       row.forEach((cell, colIdx) => {
         if (colIdx === 0) {
-          // Code 컬럼
-          html += `<td style="padding:10px 16px;text-align:left;color:#6b7280;font-family:Monaco,monospace;font-size:0.85rem;">${cell}</td>`;
+          // Code 컬럼 - 왼쪽 정렬
+          html += `<td style="padding:10px 16px;text-align:left !important;color:#6b7280;font-family:Monaco,monospace;font-size:0.85rem;">${cell}</td>`;
         } else if (colIdx === 1) {
-          // Description 컬럼 - 들여쓰기 적용
+          // Description 컬럼 - 왼쪽 정렬 + 들여쓰기
           const paddingLeft = (level * 1.5 + 1) + 'rem';
           const cleanText = cell.trim();
-          html += `<td style="padding:10px 16px;padding-left:${paddingLeft};text-align:left;color:${textColor};">${cleanText}</td>`;
+
+          // 접기/펼치기 아이콘 추가 (레벨 0, 1만)
+          let icon = '';
+          if (level === 0 || level === 1) {
+            icon = '<span style="display:inline-block;margin-right:8px;color:#3b82f6;font-size:0.75rem;width:12px;">▼</span>';
+          }
+
+          html += `<td style="padding:10px 16px;padding-left:${paddingLeft};text-align:left !important;color:${textColor};">${icon}${cleanText}</td>`;
         } else {
-          // 나머지 컬럼 (숫자)
-          const value = formatNumber(cell);
-          const fontFamily = isNumeric(cell) ? 'Monaco, Consolas, monospace' : 'inherit';
-          html += `<td style="padding:10px 16px;text-align:right;font-family:${fontFamily};">${value}</td>`;
+          // Category 컬럼 - 오른쪽 정렬
+          const value = cell.trim();
+          html += `<td style="padding:10px 16px;text-align:right !important;color:#374151;">${value}</td>`;
         }
       });
 

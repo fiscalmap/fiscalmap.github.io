@@ -83,10 +83,11 @@ draft: false
 #### 금융거래 (financing transactions)
 정부운영표의 세번째 파트는 금융자산과 부채의 거래를 기록한다. 금융자산 분류 방식은 다양할 수 있다: 거래 상대방의 거주지(국내/국외), 금융상품의 유형(통화 및 예금, 주식, 연금 등), 목적(정책금융/유동성관리).
 ## 정부운영표 기본틀
-<div class="datatable-container" data-src="/static/sample_oerations.csv"></div>
-
+<div class="datatable-container" data-src="/static/sample_operations.csv"></div>
 <script src="../static/datatable-loader.js"></script>
 
 ## 한국 정부운영표
-[[2021년도 한국통합재정수지]]
-[[2022년도 한국통합재정수지]]
+- [[2021년도 한국통합재정수지]]
+- [[2022년도 한국통합재정수지]]
+
+

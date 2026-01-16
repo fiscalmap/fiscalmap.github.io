@@ -87,3 +87,6 @@ draft: false
 
 <script src="../static/datatable-loader.js"></script>
 
+## 한국 정부운영표
+[[2021년도 한국통합재정수지]]
+[[2022년도 한국통합재정수지]]

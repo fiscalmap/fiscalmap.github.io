@@ -64,6 +64,7 @@
 
     // 계층 레벨 감지
     function detectLevel(text) {
+      if (!text) return 0;
       let spaces = 0;
       for (let i = 0; i < text.length; i++) {
         if (text[i] === ' ') {
@@ -72,9 +73,10 @@
           break;
         }
       }
-      if (spaces >= 8) return 3;
-      if (spaces >= 6) return 2;
-      if (spaces >= 4) return 1;
+      // 2칸 공백 = 레벨 1, 4칸 = 레벨 2, 6칸 = 레벨 3
+      if (spaces >= 6) return 3;
+      if (spaces >= 4) return 2;
+      if (spaces >= 2) return 1;
       return 0;
     }
 
@@ -143,7 +145,7 @@
       // 헤더
       for (let i = 0; i < headers.length; i++) {
         const header = headers[i].trim();
-        const align = i === 0 ? 'left' : 'center';
+        const align = i <= 1 ? 'left' : 'right'; // 처음 2개 컬럼만 왼쪽 정렬
         html += '<th style="padding:12px 16px;text-align:' + align + ';font-weight:600;border-bottom:2px solid #e5e7eb;white-space:nowrap;color:#111827;">' + header + '</th>';
       }
 
@@ -152,8 +154,8 @@
       // 데이터 행
       for (let i = 0; i < dataRows.length; i++) {
         const rowData = dataRows[i];
-        const categoryText = rowData[0];
-        const level = detectLevel(categoryText);
+        const descriptionText = rowData[1]; // Description 컬럼에서 레벨 감지
+        const level = detectLevel(descriptionText);
 
         const fontWeight = level === 0 ? '700' : level === 1 ? '600' : '400';
         const fontSize = level === 0 ? '1rem' : level === 1 ? '0.95rem' : level === 2 ? '0.9rem' : '0.85rem';
@@ -167,7 +169,13 @@
           const cell = rowData[j];
 
           if (j === 0) {
-            const paddingLeft = (level * 2 + 1) + 'rem';
+            // 첫 번째 컬럼 (Code/ACNT_YR) - 들여쓰기 적용
+            const paddingLeft = (level * 1.5 + 1) + 'rem';
+            const cleanText = cell.trim();
+            html += '<td style="padding:10px 16px;padding-left:' + paddingLeft + ';text-align:left;color:#6b7280;font-family:Monaco,Consolas,monospace;font-size:0.85rem;">' + cleanText + '</td>';
+          } else if (j === 1) {
+            // Description 컬럼 (구분) - 들여쓰기 적용 + 아이콘
+            const paddingLeft = (level * 1.5 + 1) + 'rem';
             const cleanText = cell.trim();
 
             let icon = '';
@@ -177,9 +185,12 @@
 
             html += '<td style="padding:10px 16px;padding-left:' + paddingLeft + ';text-align:left;color:' + textColor + ';">' + icon + cleanText + '</td>';
           } else {
+            // 나머지 컬럼 - 숫자면 오른쪽 정렬 + 포맷팅, 텍스트면 왼쪽 정렬
             const value = formatNumber(cell);
-            const fontFamily = isNumeric(cell) ? 'Monaco, Consolas, monospace' : 'inherit';
-            html += '<td style="padding:10px 16px;text-align:right;font-family:' + fontFamily + ';color:#111827;">' + value + '</td>';
+            const isNum = isNumeric(cell);
+            const align = isNum ? 'right' : 'left';
+            const fontFamily = isNum ? 'Monaco, Consolas, monospace' : 'inherit';
+            html += '<td style="padding:10px 16px;text-align:' + align + ';font-family:' + fontFamily + ';color:#111827;">' + value + '</td>';
           }
         }
 
